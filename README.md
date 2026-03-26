@@ -10,7 +10,7 @@ This orchestration system is influenced by ecological dynamics. It treats constr
 
 A mandatory human review gate sits between the Planner and Executor phases. The Executor to Verifier handoff is automatic. The system allows no more than two attempts before requiring human intervention.
 
-I can also turn this into a more formal technical description or a sharper README-style paragraph.
+
 
 ## Prerequisites
 
