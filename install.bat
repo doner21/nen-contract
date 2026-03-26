@@ -41,7 +41,7 @@ if os.path.exists(settings_path):
 hooks = data.setdefault('hooks', {})
 post = hooks.setdefault('PostToolUse', [])
 
-NEN_CMD = 'python %USERPROFILE%\\.claude\\\\hooks\\\\validate_contract.py'
+NEN_CMD = 'python ' + os.path.join(os.environ['USERPROFILE'], '.claude', 'hooks', 'validate_contract.py')
 
 for matcher in ('Write', 'Edit'):
     entry = next((e for e in post if e.get('matcher') == matcher), None)

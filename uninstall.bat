@@ -42,7 +42,7 @@ if not os.path.exists(settings_path):
 with open(settings_path) as f:
     data = json.load(f)
 
-NEN_CMD = 'python %USERPROFILE%\\.claude\\\\hooks\\\\validate_contract.py'
+NEN_CMD = 'python ' + os.path.join(os.environ['USERPROFILE'], '.claude', 'hooks', 'validate_contract.py')
 
 post = data.get('hooks', {}).get('PostToolUse', [])
 new_post = []
