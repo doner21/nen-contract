@@ -31,39 +31,7 @@ if exist "%USERPROFILE%\.claude\hooks\validate_contract.py" (
 
 REM 4. Patch settings.json to remove nen-contract hook entries
 echo [4/4] Patching %USERPROFILE%\.claude\settings.json to remove nen-contract hook entries...
-python -c "
-import json, os, shutil, tempfile
-
-settings_path = os.path.join(os.environ['USERPROFILE'], '.claude', 'settings.json')
-if not os.path.exists(settings_path):
-    print('settings.json not found, nothing to patch.')
-    exit(0)
-
-with open(settings_path) as f:
-    data = json.load(f)
-
-NEN_CMD = 'python ' + os.path.join(os.environ['USERPROFILE'], '.claude', 'hooks', 'validate_contract.py')
-
-post = data.get('hooks', {}).get('PostToolUse', [])
-new_post = []
-for entry in post:
-    if entry.get('matcher') in ('Write', 'Edit'):
-        remaining = [h for h in entry.get('hooks', []) if h.get('command') != NEN_CMD]
-        if remaining:
-            entry['hooks'] = remaining
-            new_post.append(entry)
-    else:
-        new_post.append(entry)
-
-data.setdefault('hooks', {})['PostToolUse'] = new_post
-
-dir_ = os.path.dirname(settings_path) or '.'
-with tempfile.NamedTemporaryFile('w', dir=dir_, delete=False, suffix='.tmp') as tmp:
-    json.dump(data, tmp, indent=2)
-    tmp_path = tmp.name
-shutil.move(tmp_path, settings_path)
-print('settings.json entries removed.')
-"
+python "%PLUGIN_DIR%patch_settings.py" uninstall
 
 echo.
 echo =^> Uninstall complete.
