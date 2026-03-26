@@ -2,7 +2,15 @@
 
 ## What this plugin does
 
-The nen-contract plugin installs a Planner-Executor-Verifier (PEV) orchestration system into Claude Code. It provides two global slash commands (`/nen-contract` and `/pev-loop-human-handoff-v2`) and a PostToolUse hook that automatically validates PEV contract files as they are written. The system enforces a structured loop where a Planner designs the solution, a human reviews the plan, an Executor implements it, and a Verifier independently tests the output — each agent running in a fully isolated context window. Contracts are passed between agents via files on disk, preventing context bleed. A mandatory human review gate sits between the Planner and Executor phases; the Executor-to-Verifier handoff is automatic. The system allows at most two attempts before requiring human intervention.
+The nen-contract plugin installs a Planner Executor Verifier (PEV) orchestration system into Claude Code. It provides two global slash commands, /nen-contract and /pev-loop-human-handoff-v2, along with a PostToolUse hook that automatically validates PEV contract files as they are written.
+
+The system enforces a structured loop in which a Planner designs the solution, a human reviews the plan, an Executor implements it, and a Verifier independently tests the output. Each agent runs in a fully isolated context window. Contracts are passed between agents through files on disk, which helps prevent context bleed between roles.
+
+This orchestration system is influenced by ecological dynamics. It treats constraints as active shapers of behaviour rather than as mere limitations. In practice, the system uses constraints to structure the affordance landscape of each agent, guiding what actions are available, relevant, and appropriate at each phase of the loop. These constraints also help stabilize task attractors, so the workflow is pulled toward disciplined planning, bounded execution, and independent verification rather than drifting into role confusion or unstructured iteration.
+
+A mandatory human review gate sits between the Planner and Executor phases. The Executor to Verifier handoff is automatic. The system allows no more than two attempts before requiring human intervention.
+
+I can also turn this into a more formal technical description or a sharper README-style paragraph.
 
 ## Prerequisites
 
