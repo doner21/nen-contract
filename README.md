@@ -6,31 +6,44 @@ The nen-contract plugin installs a Planner-Executor-Verifier (PEV) orchestration
 
 ## Prerequisites
 
-- Python 3 available on your PATH
-- Claude Code installed
-
-## Install — Unix/Mac
-
-```sh
-chmod +x install.sh && ./install.sh
-```
-
-Run from the `nen-contract-plugin/` directory. The script will:
-- Copy the two command files to `~/.claude/commands/`
-- Copy the hook script to `~/.claude/hooks/`
-- Patch `~/.claude/settings.json` to wire up the PostToolUse hook
-
-Restart Claude Code after installation to activate the commands.
+- [Claude Code](https://claude.ai/code) installed
+- [Python 3](https://www.python.org/downloads/) on your PATH
+- [Git](https://git-scm.com/downloads) installed
 
 ## Install — Windows
 
-```bat
-install.bat
+Open PowerShell and run:
+
+```powershell
+git clone https://github.com/doner21/nen-contract.git
+cd nen-contract
+.\install.bat
 ```
 
-Run from the `nen-contract-plugin\` directory (double-click or run from a command prompt). Equivalent to the Unix install using `%USERPROFILE%` paths.
+Then **restart Claude Code**. The `/nen-contract` command will be available in any project.
 
-Restart Claude Code after installation.
+> If you already have a clone from a previous install, run `git pull` first to get the latest version before running `.\install.bat`.
+
+## Install — Mac/Linux
+
+Open a terminal and run:
+
+```bash
+git clone https://github.com/doner21/nen-contract.git
+cd nen-contract
+chmod +x install.sh
+./install.sh
+```
+
+Then **restart Claude Code**.
+
+## What the install script does
+
+- Copies `nen-contract.md` and `pev-loop-human-handoff-v2.md` to `~/.claude/commands/`
+- Copies `validate_contract.py` to `~/.claude/hooks/`
+- Patches `~/.claude/settings.json` to register the PostToolUse hook on Write and Edit events
+
+All changes are scoped to your user profile — no project files are modified.
 
 ## How to use /nen-contract
 

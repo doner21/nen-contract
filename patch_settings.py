@@ -10,7 +10,7 @@ import json, os, shutil, sys, tempfile
 def get_paths():
     user = os.environ.get('USERPROFILE') or os.path.expanduser('~')
     settings_path = os.path.join(user, '.claude', 'settings.json')
-    nen_cmd = 'python ' + os.path.join(user, '.claude', 'hooks', 'validate_contract.py')
+    nen_cmd = 'python ' + os.path.join(user, '.claude', 'hooks', 'validate_contract.py').replace('\\', '/')
     return settings_path, nen_cmd
 
 def load(settings_path):
